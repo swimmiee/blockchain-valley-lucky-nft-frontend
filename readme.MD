@@ -5,6 +5,19 @@
 git clone https://github.com/swimmiee/blockchain-valley-lucky-nft-frontend
 npm install
 ```
+### Typechain 설치 및 실행
+- 설치
+```
+npm i typechain @typechain/ethers-v5 -D
+```
+- `package.json`의 `scripts`에서 아래 스크립트 추가
+```
+"typechain": "typechain --target ethers-v5 --out-dir src/typechain src/abi/*.json"
+```
+- typechain 실행
+```
+npm run typechain
+```
 
 ## Prerequisites
 0. Metamask 설치
@@ -13,17 +26,6 @@ npm install
 ## Update
 ```
 git pull
-```
-
-```
-npm i typechain @typechain/ethers-v5 -D
-```
-package.json
-```
-"typechain": "typechain --target ethers-v5 --out-dir src/typechain src/abi/*.json"
-```
-```
-npm run typechain
 ```
 
 ## 규칙
