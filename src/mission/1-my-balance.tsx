@@ -1,54 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { connectMetamask } from "../do-not-change/utils/metamask";
-import { providers, utils, Contract } from "ethers";
-import { constants } from "../do-not-change/constants";
-import { SYCoin } from "../typechain";
-import SYCCOIN_ABI from "../abi/SYCoin.json";
 
 interface MyBalanceSectionProps {
   account: string | null;
-  setAccount: (acc: string) => void;
   klayBalance: string;
   sycBalance: string;
-  setKlayBalance: (val: string) => void;
-  setSycBalance: (val: string) => void;
+  setAccount: (acc: string) => void;
+  resetBalance: () => Promise<void>;
 }
-
-const provider = new providers.JsonRpcProvider(constants.rpcUrl);
 
 export const MyBalanceSection = ({
   account,
-  setAccount,
   klayBalance,
   sycBalance,
-  setKlayBalance,
-  setSycBalance,
+  setAccount,
+  resetBalance,
 }: MyBalanceSectionProps) => {
   const onConnect = async () => {
     const result = await connectMetamask();
     setAccount(result!.account);
   };
 
-  const setBalance = async () => {
-    // 어떤 노드 사용?
-    const sycContract = new Contract(
-      constants.SYCoinAddress,
-      SYCCOIN_ABI,
-      provider
-    ) as SYCoin;
-
-    const [balanceOfKlay, balanceOfSYC] = await Promise.all([
-      provider.getBalance(account!),
-      sycContract.balanceOf(account!),
-    ]);
-
-    setKlayBalance(utils.formatEther(balanceOfKlay));
-    setSycBalance(utils.formatEther(balanceOfSYC));
-  };
-
   useEffect(() => {
     if (!account) return;
-    setBalance();
+    resetBalance();
   }, [account]);
 
   return (

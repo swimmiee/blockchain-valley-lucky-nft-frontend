@@ -5,14 +5,12 @@ import SYCCOIN_ABI from "../abi/SYCoin.json";
 
 interface MintSectionProps {
   account: string | null;
-  setSycBalance: (val: string) => void;
-  setKlayBalance: (val: string) => void;
+  resetBalance: () => Promise<void>;
 }
 
 export const MintSection = ({
   account,
-  setSycBalance,
-  setKlayBalance,
+  resetBalance,
 }: MintSectionProps) => {
   const onMint = async () => {
     if (!account) return;
@@ -39,10 +37,7 @@ export const MintSection = ({
 
     console.log("Minted: ", tx.hash);
 
-    const sycBalance = await sycContract.balanceOf(account);
-    const afterKlayBalance = await signer.getBalance();
-    setKlayBalance(utils.formatEther(afterKlayBalance));
-    setSycBalance(utils.formatEther(sycBalance));
+    await resetBalance();
   };
 
   return (

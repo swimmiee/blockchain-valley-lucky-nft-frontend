@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 
 interface LuckySectionProps {
   account: string | null
+  resetBalance: () => Promise<void>;
 }
 
-export const LuckySection = ({account}:LuckySectionProps) => {
+export const LuckySection = ({account, resetBalance }:LuckySectionProps) => {
   const [nftBalance, setNFTBalance] = useState<number>(0);
 
   const luckyAmount = '100';
@@ -39,6 +40,7 @@ export const LuckySection = ({account}:LuckySectionProps) => {
     } else {
       window.alert('꽝ㅋㅋㅋㅋㅋ')
     }
+    await resetBalance();
     setNFTBalance(currentBalance);
   };
 
