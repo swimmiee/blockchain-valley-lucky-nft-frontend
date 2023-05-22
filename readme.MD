@@ -7,7 +7,13 @@ npm install
 ```
 
 ## Prerequisites
+0. Metamask 설치
 1. Faucet 받기 https://baobab.wallet.klaytn.foundation/
+
+## Update
+```
+git pull
+```
 
 ## 규칙
 1. 단돈 45 KLAY를 내면 100 SYC을 받을 수 있다! (mint)
