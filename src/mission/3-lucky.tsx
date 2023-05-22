@@ -1,7 +1,5 @@
 export const LuckySection = () => {
-    const onLucky = () => {
-        
-    }
+  const onLucky = () => {};
   return (
     <div>
       <button className="btn" onClick={onLucky}>
