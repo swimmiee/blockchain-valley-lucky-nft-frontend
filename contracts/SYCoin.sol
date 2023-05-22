@@ -34,7 +34,7 @@ contract SYCoin is ERC20("SYCoin", "SYC") {
             )
         ) % 100;
 
-        uint key = random * amount / 1 ether;
+        uint key = random * amount / 1 ether / 100;
 
         if(key > 80){
             uint id = nft.mint(msg.sender);
