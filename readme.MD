@@ -18,6 +18,13 @@ git pull
 ```
 npm i typechain @typechain/ethers-v5 -D
 ```
+package.json
+```
+"typechain": "typechain --target ethers-v5 --out-dir src/typechain src/abi/*.json"
+```
+```
+npm run typechain
+```
 
 ## 규칙
 1. 단돈 45 KLAY를 내면 100 SYC을 받을 수 있다! (mint)
